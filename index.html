@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FindMyWay | Rural Mobility Operations</title>
+  <link rel="preconnect" href="https://unpkg.com"><link rel="preconnect" href="https://tile.openstreetmap.org">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">↗</div><div><strong>FindMyWay</strong><small>ROUTELESS · RURAL MOBILITY</small></div></div>
+    <div class="top-meta"><span class="demo-pill">● SIMULATED DEMO</span><span id="connection">Offline-ready view · sample data</span><button id="langBtn" class="ghost">हिन्दी</button></div>
+  </header>
+  <main>
+    <section class="headline">
+      <div><p class="eyebrow">EXAM-DAY RESPONSE / OPERATIONS CENTRE</p><h1 id="pageTitle">Keep every student moving.</h1><p class="sub" id="pageSub">A live-style operational view built with clearly labelled sample data.</p></div>
+      <div class="countdown"><span>EXAMS BEGIN IN</span><strong>01:42:00</strong><small>Illustrative deadline</small></div>
+    </section>
+    <section class="alertbar"><span class="alert-icon">!</span><div><strong id="incidentTitle">Major disruption detected</strong><p id="incidentText">2 government buses unavailable · demand +40% · connecting road flooded</p></div><span class="alert-status">RESPONSE REQUIRED</span></section>
+    <section class="metrics">
+      <article><span>STUDENTS NEEDING TRAVEL</span><strong id="needMetric">168</strong><small>+40% demand surge</small></article>
+      <article><span>AVAILABLE VEHICLES</span><strong id="busMetric">5</strong><small>After 2 bus outages</small></article>
+      <article><span>PROPOSED SEATS</span><strong id="seatMetric">128</strong><small>Capacity-constrained</small></article>
+      <article class="risk"><span>UNSERVED / AT RISK</span><strong id="riskMetric">40</strong><small>Requires human escalation</small></article>
+    </section>
+    <section class="workspace">
+      <div class="map-panel">
+        <div class="panel-head"><div><h2>Transport network</h2><p>Villages · schools · buses · incident zone</p></div><span class="map-tag">OPENSTREETMAP</span></div>
+        <div id="map" role="application" aria-label="Map showing sample villages, schools, buses and flooded road"></div>
+        <div class="legend"><span><i class="dot village"></i> Village / pickup</span><span><i class="dot school"></i> School</span><span><i class="dot bus"></i> Sample bus</span><span><i class="dot flood"></i> Flooded road</span></div>
+      </div>
+      <aside class="side-panel">
+        <div class="panel-head"><div><h2>Disruption response</h2><p>Proposed actions · review before dispatch</p></div><span class="status">DRAFT</span></div>
+        <div id="plans" class="plans"></div>
+        <div class="decision"><strong>Operator decision required</strong><p>Review capacity, pickup feasibility, and travel-time evidence before confirming any assignment.</p><button id="confirmBtn" class="primary">Review proposed allocation</button><button id="undoBtn" class="secondary">Reset demo scenario</button></div>
+      </aside>
+    </section>
+    <section class="bottom-grid">
+      <div class="panel">
+        <div class="panel-head"><div><h2>Trip allocation</h2><p>Accessible text alternative to the map</p></div><span class="status">SIMULATED</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Vehicle</th><th>Pickup cluster</th><th>Seats</th><th>Assigned</th><th>State</th></tr></thead><tbody id="allocationRows"></tbody></table></div>
+      </div>
+      <div class="panel risk-panel">
+        <div class="panel-head"><div><h2>Unserved demand</h2><p>Must not be hidden by the allocation score</p></div><span class="alert-status">40 AT RISK</span></div>
+        <p class="risk-copy">Current sample capacity cannot safely cover all demand. Escalate remaining students to verified local operators, guardians, and school coordinators. Do not direct anyone across the flooded road.</p>
+        <div class="risk-actions"><button class="secondary" id="escalateBtn">Prepare escalation list</button><button class="secondary" id="notifyBtn">Notification preview</button></div>
+        <p id="actionMessage" class="action-message" aria-live="polite"></p>
+      </div>
+    </section>
+    <footer>FindMyWay · Demo data only · No live GPS, road-closure feed, dispatch, booking, or notification integration is connected.</footer>
+  </main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data/demo-data.js"></script><script src="app.js"></script>
+</body></html>
